@@ -15,8 +15,13 @@ body {
 
 .texty {
   font-family: "Cascadia Code",Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;
-  line-height: 1.5rem;
   padding: 15px;
+}
+
+.playbuttons {
+  display: flex;  
+  flex-direction: row;
+  align-items: center;
 }
 
 .copied-off-a-website-button {
@@ -44,12 +49,6 @@ body {
   word-break: normal;
   word-spacing: normal;
   margin: 8px;
-}
-
-.playbuttons {
-    display: flex;  
-    flex-direction: row;
-    align-items: center;
 }
 
 .copied-off-a-website-button:hover {

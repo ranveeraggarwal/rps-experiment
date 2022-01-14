@@ -1,13 +1,10 @@
+// ROCK: 0 | PAPER: 1 | SCISSORS: 2
+// No enum here because Math is easier and I don't know enough JS.
+
 const GameResult = Object.freeze({
     DRAW: 0,
     WIN: 1,
     LOSE: 2
-});
-
-const Move = Object.freeze({
-    ROCK: 0,
-    PAPER: 1,
-    SCISSOR: 2
 });
 
 const GameWinner = Object.freeze({
@@ -35,7 +32,6 @@ class RockPaperScissor {
     }
 
     getComputerMove() {
-        console.log(this.computer.previousGameWon);
         switch (this.computer.previousGameWon) {
             case GameResult.DRAW:
                 return this.playRandom();
