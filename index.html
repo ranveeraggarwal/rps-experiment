@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock! Paper! Scissors!</title>
+    <link rel="stylesheet" href="/main.css">
 </head>
 <body>
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissors</button>
-    <h1 id="computerMove"></h1>
-    <h1 id="result"></h1>
+    <h1 class="texty">Rock Paper Scissors</h1>
+    
+    <div class="playbuttons">
+        <button id="rock" class="copied-off-a-website-button">✊ Rock</button>
+        <button id="paper" class="copied-off-a-website-button">🖐 Paper</button>
+        <button id="scissors" class="copied-off-a-website-button">✌ Scissors</button>
+    </div>
+    
+    <p>
+        <span id="computerMove" class="texty">__</span> <br> <span id="result" class="texty">__</span>
+    </p>
     <script type="module" src="/index.js"></script>
 </body>
 </html>
