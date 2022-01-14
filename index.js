@@ -129,6 +129,8 @@ function updateResult(winner) {
             break;
     }
     document.getElementById("result").innerHTML = winString;
+    document.getElementById("humanScore").innerHTML = game.human.winCount;
+    document.getElementById("computerScore").innerHTML = game.computer.winCount;
 }
 
 document.getElementById("rock").addEventListener("click", () => updateResult(game.play(0)));
