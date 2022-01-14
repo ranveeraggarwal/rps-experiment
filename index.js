@@ -32,6 +32,11 @@ class RockPaperScissor {
     }
 
     getComputerMove() {
+        if (Math.abs(this.human.winCount - this.computer.winCount) > 4) {
+            // The *AI* has been figured out
+            // Or vice versa 😱
+            return this.playRandom();
+        }
         switch (this.computer.previousGameWon) {
             case GameResult.DRAW:
                 return this.playRandom();
@@ -98,13 +103,13 @@ function updateComputerMove(computerMove) {
     let computerMoveString = "The computer chose ";
     switch (computerMove) {
         case 0:
-            computerMoveString += "ROCK"
+            computerMoveString += "✊ ROCK"
             break;
         case 1:
-            computerMoveString += "PAPER"
+            computerMoveString += "🖐 PAPER"
             break;
         case 2:
-            computerMoveString += "SCISSORS"
+            computerMoveString += "✌ SCISSORS"
             break;
         default:
             break;
@@ -116,21 +121,23 @@ function updateResult(winner) {
     let winString = "";
     switch (winner) {
         case 0:
-            winString = "The Game Was Drawn";
+            winString = "The Game Was Drawn ⚔";
             break;
         case 1:
-            winString = "You Beat the Machines";
+            winString = "You Beat the Machines 🥇";
             break;
         case 2:
-            winString = "The Machines Beat You";
+            winString = "The Machines Beat You 🤖";
             break;
         default:
-            winString = "Inconsistent State, Ranveer needs Coffee.";
+            winString = "Inconsistent State, Ranveer needs Coffee. ☕";
             break;
     }
     document.getElementById("result").innerHTML = winString;
-    document.getElementById("humanScore").innerHTML = game.human.winCount;
-    document.getElementById("computerScore").innerHTML = game.computer.winCount;
+    document.getElementById("humanScore").innerHTML = game.human.winCount.toString();
+    document.getElementById("humanScore").innerHTML += game.human.winCount > game.computer.winCount ? " 👑" : "";
+    document.getElementById("computerScore").innerHTML = game.computer.winCount.toString();
+    document.getElementById("computerScore").innerHTML += game.human.winCount < game.computer.winCount ? " 👑" : "";
 }
 
 document.getElementById("rock").addEventListener("click", () => updateResult(game.play(0)));
