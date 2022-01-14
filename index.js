@@ -71,6 +71,7 @@ class RockPaperScissor {
 
     play(humanMove) {
         let computerMove = this.getComputerMove();
+        updateComputerMove(computerMove)
         let winner = this.getWinner(humanMove, computerMove);
 
         this.computer.previousMove = computerMove;
@@ -97,7 +98,43 @@ class RockPaperScissor {
 
 let game = new RockPaperScissor();
 
-document.getElementById("playButton").addEventListener("click", function() {
-    let humanMove = document.getElementById("humanMove").value;
-    document.getElementById("result").innerHTML = game.play(humanMove);
-});
+function updateComputerMove(computerMove) {
+    let computerMoveString = "The computer chose ";
+    switch (computerMove) {
+        case 0:
+            computerMoveString += "ROCK"
+            break;
+        case 1:
+            computerMoveString += "PAPER"
+            break;
+        case 2:
+            computerMoveString += "SCISSORS"
+            break;
+        default:
+            break;
+    }
+    document.getElementById("computerMove").innerHTML = computerMoveString;
+}
+
+function updateResult(winner) {
+    let winString = "";
+    switch (winner) {
+        case 0:
+            winString = "The Game Was Drawn";
+            break;
+        case 1:
+            winString = "You Beat the Machines";
+            break;
+        case 2:
+            winString = "The Machines Beat You";
+            break;
+        default:
+            winString = "Inconsistent State, Ranveer needs Coffee.";
+            break;
+    }
+    document.getElementById("result").innerHTML = winString;
+}
+
+document.getElementById("rock").addEventListener("click", () => updateResult(game.play(0)));
+document.getElementById("paper").addEventListener("click", () => updateResult(game.play(1)));
+document.getElementById("scissors").addEventListener("click", () => updateResult(game.play(2)));
