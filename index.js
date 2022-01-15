@@ -23,6 +23,8 @@ class Player {
 
 class RockPaperScissor {
     constructor() {
+        this.gameId = 0;
+
         this.human = new Player();
         this.computer = new Player();
     }
@@ -71,8 +73,9 @@ class RockPaperScissor {
     }
 
     play(humanMove) {
+        this.gameId++;
+
         let computerMove = this.getComputerMove();
-        updateComputerMove(computerMove)
         let winner = this.getWinner(humanMove, computerMove);
 
         this.computer.previousMove = computerMove;
@@ -93,6 +96,11 @@ class RockPaperScissor {
             default:
                 break;
         }
+
+        // Update UI
+        // Should probably return this value and move the updates outside the class.
+        updateComputerMove(computerMove);
+
         return winner;
     }
 };
@@ -117,7 +125,11 @@ function updateComputerMove(computerMove) {
     document.getElementById("computerMove").innerHTML = computerMoveString;
 }
 
-function updateResult(winner) {
+function updateUI(winner) {
+    // Update game number
+    document.getElementById("gameNum").innerHTML = game.gameId;
+
+    // Update winner
     let winString = "";
     switch (winner) {
         case 0:
@@ -134,12 +146,14 @@ function updateResult(winner) {
             break;
     }
     document.getElementById("result").innerHTML = winString;
+
+    // Update scores
     document.getElementById("humanScore").innerHTML = game.human.winCount.toString();
     document.getElementById("humanScore").innerHTML += game.human.winCount > game.computer.winCount ? " 👑" : "";
     document.getElementById("computerScore").innerHTML = game.computer.winCount.toString();
     document.getElementById("computerScore").innerHTML += game.human.winCount < game.computer.winCount ? " 👑" : "";
 }
 
-document.getElementById("rock").addEventListener("click", () => updateResult(game.play(0)));
-document.getElementById("paper").addEventListener("click", () => updateResult(game.play(1)));
-document.getElementById("scissors").addEventListener("click", () => updateResult(game.play(2)));
+document.getElementById("rock").addEventListener("click", () => updateUI(game.play(0)));
+document.getElementById("paper").addEventListener("click", () => updateUI(game.play(1)));
+document.getElementById("scissors").addEventListener("click", () => updateUI(game.play(2)));
