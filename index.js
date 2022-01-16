@@ -157,3 +157,7 @@ function updateUI(winner) {
 document.getElementById("rock").addEventListener("click", () => updateUI(game.play(0)));
 document.getElementById("paper").addEventListener("click", () => updateUI(game.play(1)));
 document.getElementById("scissors").addEventListener("click", () => updateUI(game.play(2)));
+
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js");
+};
